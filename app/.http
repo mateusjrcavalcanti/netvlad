@@ -1,0 +1,68 @@
+### Teste GET para listar datasets
+GET http://localhost:3000/api/dataset
+Content-Type: application/json
+
+###
+
+### Teste GET para listar classes de um dataset
+GET http://localhost:3000/api/dataset/teste
+Content-Type: application/json
+###
+
+### Teste POST para criar dataset
+POST http://localhost:3000/api/dataset
+Content-Type: application/json
+
+{
+  "dataset_name": "teste"
+}
+
+###
+
+### Teste DELETE para remover dataset
+DELETE http://localhost:3000/api/dataset/teste
+Content-Type: application/json
+
+###
+
+### Teste POST para criar classe no dataset
+POST http://localhost:3000/api/dataset/teste/classes
+Content-Type: application/json
+
+{
+  "name": "nova_classe",
+}
+
+###
+
+### Teste DELETE para remover classe
+DELETE http://localhost:3000/api/dataset/teste/classes/nova_classe
+Content-Type: application/json
+
+###
+
+### Teste POST para upload de imagem
+POST http://localhost:3000/api/dataset/teste/nova_classe
+Content-Type: multipart/form-data
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="imagem_teste.jpg"
+Content-Type: image/jpeg
+
+< caminho/para/imagem_teste.jpg >
+
+--boundary--
+
+###
+
+### Teste GET para download de imagem
+GET http://localhost:3000/api/dataset/teste/nova_classe/imagem_teste.jpg
+Content-Type: application/json
+
+###
+
+### Teste DELETE para remover imagem
+DELETE http://localhost:3000/api/dataset/teste/nova_classe/imagem_teste.jpg
+Content-Type: application/json
+
+###
