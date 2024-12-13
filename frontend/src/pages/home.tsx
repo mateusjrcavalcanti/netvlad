@@ -13,6 +13,7 @@ import { z } from "zod";
 import { Button } from "@/components/shadcn/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import Map from "@/components/map";
 
 const fileSchema = z.object({
   file: z.instanceof(File)
@@ -36,7 +37,7 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", data.file);
 
-    fetch("/recognize-place", {
+    fetch("/api/laboratorio_robotica/recognize", {
       method: "POST",
       body: formData,
     })
@@ -51,6 +52,9 @@ export default function Home() {
         setLoading(false);
       });
   }
+
+  console.log(responseData);
+  
 
   return (
     <div className="h-screen pt-2 pb-24 pl-2 pr-2 overflow-auto md:pt-0 md:pr-0 md:pl-0">
@@ -112,6 +116,14 @@ export default function Home() {
             </div>
           </div>
         )}
+      </div>
+
+
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mt-5">
+        <div className="max-w-lg w-full p-6 bg-white shadow-lg rounded-lg">
+          <h3 className="text-lg font-semibold">Map</h3>
+          <Map selectedRectangle={responseData ? responseData.single_best_match_class : null} />
+        </div>
       </div>
     </div>
   );

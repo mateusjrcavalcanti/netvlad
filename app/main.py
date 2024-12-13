@@ -4,6 +4,7 @@ from flask import Flask, send_from_directory
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+from routes.vpr import vprRoutes
 from routes.classes import classeRoutes
 from routes.datasets import datasetRoutes
 from routes.images import imageRoutes
@@ -14,6 +15,7 @@ app = Flask(__name__)
 app.register_blueprint(classeRoutes)
 app.register_blueprint(datasetRoutes)
 app.register_blueprint(imageRoutes)
+app.register_blueprint(vprRoutes)
 
 # Registrar rotas para o frontend
 @app.route('/')
@@ -37,4 +39,6 @@ def index(path=None):
     return app.send_static_file('index.html')
   
 if __name__ == '__main__':
+    # with app.app_context():
+    #     describe_dataset_images("laboratorio_robotica")
     app.run(debug=True, host='0.0.0.0', port=3000)

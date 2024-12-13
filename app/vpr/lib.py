@@ -3,7 +3,7 @@ import torch.nn as nn
 import torchvision.models as models
 import torchvision.transforms as transforms
 from PIL import Image
-from NetVLAD import NetVLAD
+from vpr.NetVLAD import NetVLAD
 
 # Carregar o modelo base (exemplo: ResNet-18)
 def get_base_cnn_model():
